@@ -1,0 +1,16 @@
+import os
+
+boost_include = os.sep.join([os.environ['BOOST_DIR'],'include'])
+boost_lib = os.sep.join([os.environ['BOOST_DIR'],'lib'])
+
+CXX = '/opt/local/bin/g++-mp-4.5'
+
+env = Environment(CXX = CXX,
+                  CCFLAGS = '--std=c++0x -DBOOST',
+                  CPPPATH= ['.', boost_include])
+
+env.Decider('MD5-timestamp')
+
+env.Program('main', Glob('*.cpp'), 
+            LIBS=['boost_regex'], 
+            LIBPATH=boost_lib)
