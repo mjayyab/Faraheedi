@@ -1,4 +1,8 @@
-import os
+import os, sys
+
+if 'BOOST_DIR' not in os.environ:
+	sys.stderr.write('FATAL: BOOST_DIR needs to be set\n')
+	sys.exit(1)
 
 boost_include = os.sep.join([os.environ['BOOST_DIR'],'include'])
 boost_lib = os.sep.join([os.environ['BOOST_DIR'],'lib'])
